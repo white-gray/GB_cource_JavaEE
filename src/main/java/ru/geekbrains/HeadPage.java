@@ -13,13 +13,14 @@ public class HeadPage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        resp.getWriter().println("<link rel='stylesheet' href='" + req.getServletContext().getContextPath() + "/style.css'>");
+        resp.getWriter().println("<link rel='stylesheet' href='" + req.getServletContext().getContextPath() + "/css/style.css'>");
         resp.getWriter().printf("<ul>");
         resp.getWriter().printf("<li><a href='" + req.getServletContext().getContextPath() + "/PageMain'>Начало</a></li>");
         resp.getWriter().printf("<li><a href='" + req.getServletContext().getContextPath() + "/PageCatalog'>Каталог</a></li>");
         resp.getWriter().printf("<li><a href='" + req.getServletContext().getContextPath() + "/PageProduct'>Продукты</a></li>");
         resp.getWriter().printf("<li><a href='" + req.getServletContext().getContextPath() + "/PageCart'>Корзинка</a></li>");
         resp.getWriter().printf("<li><a href='" + req.getServletContext().getContextPath() + "/PageOrder'>Заказы</a></li>");
+        resp.getWriter().printf("<li><a href='" + req.getServletContext().getContextPath() + "/Calculator'>Калькулятор</a></li>");
         resp.getWriter().printf("</ul>");
     }
 

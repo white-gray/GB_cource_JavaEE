@@ -14,6 +14,8 @@ public class PageCart extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getServletContext().getRequestDispatcher("/HeadPage").include(req, resp);
         resp.getWriter().printf("<div><br><br><h1 align='center'>Ваша корзина:</h1></div>");
+		req.getServletContext().getRequestDispatcher("/PageCart.jsp").include(req, resp);
+
     }
 
     @Override
