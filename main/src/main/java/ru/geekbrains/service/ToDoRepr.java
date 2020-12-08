@@ -1,6 +1,5 @@
 package ru.geekbrains.service;
 
-import ru.geekbrains.persist.ToDoCategory;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -22,21 +21,15 @@ public class ToDoRepr implements Serializable {
     
     private String description;
 	
-    private Long categoryId;
-
-    private String categoryName;
-
     public ToDoRepr() {
     }
 
-    public ToDoRepr(Long id, String  name, Float price, Long quantity, String description, ToDoCategory toDoCategory) {
+    public ToDoRepr(Long id, String  name, Float price, Long quantity, String description) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
         this.description = description;
-        this.categoryId = toDoCategory != null ? toDoCategory.getId() : null;
-        this.categoryName = toDoCategory != null ? toDoCategory.getName() : null;
   }
 
     public String getName() {
@@ -79,20 +72,4 @@ public class ToDoRepr implements Serializable {
         this.description = description;
     }
 
-
-    public Long getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
 }

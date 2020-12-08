@@ -17,13 +17,10 @@ public class ToDo {
     @NotNull
     @Column(nullable = false)
     private Float price;
-    @NotEmpty
     private Long quantity;
     private String description;
 	
-	
-    @ManyToOne
-    private ToDoCategory toDoCategory;
+
 
 
 
@@ -32,13 +29,12 @@ public class ToDo {
     public ToDo() {
     }
 
-    public ToDo(Long id, String  name, Float price, Long quantity, String description, ToDoCategory toDoCategory) {
+    public ToDo(Long id, String  name, Float price, Long quantity, String description) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
         this.description = description;
-        this.toDoCategory = toDoCategory;
     }
 
     public String getName() {
@@ -79,14 +75,6 @@ public class ToDo {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public ToDoCategory getToDoCategory() {
-        return toDoCategory;
-    }
-
-    public void setToDoCategory(ToDoCategory toDoCategory) {
-        this.toDoCategory = toDoCategory;
     }
 
 

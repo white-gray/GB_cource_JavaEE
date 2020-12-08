@@ -22,4 +22,6 @@ public interface ToDoRepository {
     ToDoRepr findToDoReprById(long id);
 
     List<ToDoRepr> findAllToDoRepr();
+
+    ToDoRepr findToDoReprByName(String name);
 }

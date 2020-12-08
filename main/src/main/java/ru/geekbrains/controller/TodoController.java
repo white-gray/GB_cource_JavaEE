@@ -1,7 +1,8 @@
 package ru.geekbrains.controller;
 
-import ru.geekbrains.persist.*;
-import ru.geekbrains.service.*;
+import ru.geekbrains.service.CartService;
+import ru.geekbrains.service.ToDoRepr;
+import ru.geekbrains.service.ToDoServiceLocal;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -18,19 +19,15 @@ public class TodoController implements Serializable {
     @Inject
     private ToDoServiceLocal toDoService;
 
-    @Inject
-    private ToDoCategoryRepository toDoCategoryRepository;
 
     @EJB
     private CartService cartService;
     private ToDoRepr todo;
 
    private List<ToDoRepr> todos;
-    private List<ToDoCategory> toDoCategories;
 
     public void preloadData(ComponentSystemEvent componentSystemEvent) {
         this.todos = toDoService.findAll();
-        this.toDoCategories = toDoCategoryRepository.findAll();
     }
 
     public List<ToDoRepr> getAllTodos()  {
@@ -60,7 +57,7 @@ public class TodoController implements Serializable {
         } else {
             toDoService.update(todo);
         }
-        return "/index.xhtml?faces-redirect=true";
+        return "/PageCatalog.xhtml?faces-redirect=true";
     }
 
     public String createTodo() {
@@ -68,7 +65,4 @@ public class TodoController implements Serializable {
         return "/todo.xhtml?faces-redirect=true";
     }
 
-    public List<ToDoCategory> getToDoCategories() {
-        return toDoCategories;
-    }
 }

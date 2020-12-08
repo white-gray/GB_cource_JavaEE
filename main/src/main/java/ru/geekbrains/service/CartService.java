@@ -17,7 +17,7 @@ public class CartService implements Serializable {
     }
 
     public void add(ToDoRepr todo) {
-        toDoReprMap.put(todo.getId(), todo);
+        toDoReprMap.put(todo.getId(), todo );
     }
 
     public void delete (Long id) {

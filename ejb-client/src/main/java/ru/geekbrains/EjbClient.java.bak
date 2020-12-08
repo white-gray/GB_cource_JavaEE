@@ -16,7 +16,7 @@ public class EjbClient {
     public static void main(String[] args) throws IOException, NamingException, ExecutionException, InterruptedException {
         Context context = createInitialContext();
 
-        ToDoServiceRemote todoService = (ToDoServiceRemote) context.lookup("ejb:/Lesson1part6/ToDoServiceImpl!ru.geekbrains.service.ToDoServiceRemote");
+        ToDoServiceRemote todoService = (ToDoServiceRemote) context.lookup("ejb:/Lesson1part7/ToDoServiceImpl!ru.geekbrains.service.ToDoServiceRemote");
 
         todoService.findAll()
                 .forEach(todo -> System.out.println(todo.getId() + " " + todo.getDescription() + " " + todo.getTargetDate()));

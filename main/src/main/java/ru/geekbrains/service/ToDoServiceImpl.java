@@ -2,39 +2,39 @@ package ru.geekbrains.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.geekbrains.persist.*;
+import ru.geekbrains.persist.ToDo;
+import ru.geekbrains.persist.ToDoRepository;
+import ru.geekbrains.rest.ToDoServiceRs;
 
-import javax.ejb.AsyncResult;
-import javax.ejb.Asynchronous;
-import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.inject.Inject;
+import javax.ejb.*;
+import javax.jws.WebService;
 import java.util.List;
 import java.util.concurrent.Future;
 
 @Stateless
-public class ToDoServiceImpl implements ToDoServiceLocal, ToDoServiceRemote {
+@WebService(endpointInterface = "ru.geekbrains.service.ToDoServiceWs", serviceName = "ToDoService")
+public class ToDoServiceImpl implements ToDoServiceLocal, ToDoServiceRemote, ToDoServiceWs, ToDoServiceRs {
 
     private static final Logger logger = LoggerFactory.getLogger(ToDoServiceImpl.class);
 
-    @Inject
+    @EJB
     private ToDoRepository toDoRepository;
-
-    @Inject
-    private ToDoCategoryRepository toDoCategoryRepository;
 
     @TransactionAttribute
     @Override
     public void insert(ToDoRepr toDoRepr) {
-        ToDoCategory category = toDoCategoryRepository.findById(toDoRepr.getCategoryId());
-        toDoRepository.insert(new ToDo(null, toDoRepr.getName(), toDoRepr.getPrice(), toDoRepr.getQuantity(), toDoRepr.getDescription(), category));
+        toDoRepository.insert(new ToDo(null, toDoRepr.getName(), toDoRepr.getPrice(), toDoRepr.getQuantity(), toDoRepr.getDescription()));
     }
 
     @TransactionAttribute
     @Override
     public void update(ToDoRepr toDoRepr) {
-        ToDoCategory category = toDoCategoryRepository.findById(toDoRepr.getCategoryId());
-        toDoRepository.update(new ToDo(toDoRepr.getId(), toDoRepr.getName(), toDoRepr.getPrice(), toDoRepr.getQuantity(), toDoRepr.getDescription(), category));
+        toDoRepository.update(new ToDo(toDoRepr.getId(), toDoRepr.getName(), toDoRepr.getPrice(), toDoRepr.getQuantity(), toDoRepr.getDescription()));
+    }
+
+    @Override
+    public ToDoRepr delete(Long id) {
+        return null;
     }
 
     @TransactionAttribute
@@ -46,6 +46,16 @@ public class ToDoServiceImpl implements ToDoServiceLocal, ToDoServiceRemote {
     @Override
     public ToDoRepr findById(long id) {
         return toDoRepository.findToDoReprById(id);
+    }
+
+    @Override
+    public ToDoRepr findById(Long id) {
+        return toDoRepository.findToDoReprById(id);
+    }
+
+    @Override
+    public ToDoRepr findByName(String name) {
+        return toDoRepository.findToDoReprByName(name);
     }
 
     @Override
