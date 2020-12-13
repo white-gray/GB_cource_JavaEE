@@ -6,7 +6,11 @@ import ru.geekbrains.persist.ToDo;
 import ru.geekbrains.persist.ToDoRepository;
 import ru.geekbrains.rest.ToDoServiceRs;
 
-import javax.ejb.*;
+import javax.ejb.AsyncResult;
+import javax.ejb.Asynchronous;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.inject.Inject;
 import javax.jws.WebService;
 import java.util.List;
 import java.util.concurrent.Future;
@@ -17,7 +21,7 @@ public class ToDoServiceImpl implements ToDoServiceLocal, ToDoServiceRemote, ToD
 
     private static final Logger logger = LoggerFactory.getLogger(ToDoServiceImpl.class);
 
-    @EJB
+    @Inject
     private ToDoRepository toDoRepository;
 
     @TransactionAttribute
