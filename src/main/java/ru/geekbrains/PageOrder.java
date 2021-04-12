@@ -14,6 +14,7 @@ public class PageOrder extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getServletContext().getRequestDispatcher("/HeadPage").include(req, resp);
         resp.getWriter().printf("<div><br><br><h1 align='center'>Оформлени заказа:</h1></div>");
+		req.getServletContext().getRequestDispatcher("/PageOrder.jsp").include(req, resp);
     }
 
     @Override

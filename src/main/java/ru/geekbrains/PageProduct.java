@@ -14,6 +14,7 @@ public class PageProduct extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getServletContext().getRequestDispatcher("/HeadPage").include(req, resp);
         resp.getWriter().printf("<div><br><br><h1 align='center'>Продукты:</h1></div>");
+		req.getServletContext().getRequestDispatcher("/PageProduct.jsp").include(req, resp);
     }
 
     @Override
