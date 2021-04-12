@@ -3,6 +3,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <title>PageCatalog</title>
     </head>
     <body style="background-color:#2DEC7A;">
@@ -14,7 +15,9 @@
 				<th style="text-align:center;border: 1px solid #2DEC7A;border-bottom: 3px solid #999;padding: 5px 12px;">Описание</th>
 			</tr>
 			<tr>
-				<td><a href="${pageContext.request.contextPath}/PageItem1.jsp">вещь1</a></td>
+				<td>
+				<c:url value="${pageContext.request.contextPath}/PageItem1.jsp" var="item1"/>
+                    <a href="${item1}">вещь1</a></td>
 				<td style="text-align:center;">33р</td>
 				<td style="text-align:center;">4</td>
 				<td>прекрасная вещь!</td>
